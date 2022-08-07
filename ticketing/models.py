@@ -3,23 +3,33 @@ from django.db import models
 
 class Movie(models.Model):
     """ movie presentation """
-    name = models.CharField(max_length=100)
-    director = models.CharField(max_length=50)
-    year = models.IntegerField()
-    description = models.TextField()
-    length = models.IntegerField()
+    name = models.CharField('Title', max_length=100)
+    director = models.CharField('Director', max_length=50)
+    year = models.IntegerField('Release Date')
+    description = models.TextField('Story')
+    length = models.IntegerField('Duration')
+    
+    MOVIES_RATES = [
+        ('G', 'General Audience'),
+	    ('PG', 'Parental Guidance'),
+	    ('PG-13', 'Parental Guidance Strongly Cautioned'),
+	    ('R', 'Restricted'),
+	    ('NC-17', 'Clearly Adult')
+    ]
+    
+    rates = models.CharField('Rate', max_length=5, choices=MOVIES_RATES, blank = True, null = True, default= 'PG')
 
     def __str__(self):
         return self.name
 
 
 class Cinema(models.Model):
-    """ Cinema's names """
+    
     cinema_code = models.IntegerField(primary_key=True)
     name = models.CharField(max_length=50)
-    city = models.CharField(max_length=30, default='Tehran')
-    capacity = models.IntegerField()
-    phone = models.CharField(max_length=20, null=True)
+    city = models.CharField('Location', max_length=30, default='Tehran')
+    capacity = models.IntegerField('Seats')
+    phone = models.CharField('Contact', max_length=20, null=True)
     address = models.TextField()
 
     def __str__(self):
@@ -27,12 +37,12 @@ class Cinema(models.Model):
 
 
 class ShowTime(models.Model):
-    movie = models.ForeignKey('Movie', on_delete=models.PROTECT)
+    movie = models.ForeignKey('Movie', on_delete=models.PROTECT, verbose_name= 'Title')
     cinema = models.ForeignKey('Cinema', on_delete=models.PROTECT)
     start_time = models.DateTimeField()
     price = models.IntegerField()
-    salable_sits = models.IntegerField()
-    free_sits = models.IntegerField()
+    salable_sits = models.IntegerField('Availabe Seats')
+    free_sits = models.IntegerField('Number of Seats')
 
     SALE_NOT_STARTED = 1
     SALE_OPEN = 2
