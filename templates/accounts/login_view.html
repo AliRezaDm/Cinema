@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login page</title>
+    <style>
+        label{
+            color : rgb(0, 0, 0);
+            font-size: 50px;
+            font-family:  Helvetica;
+            text-align: center;  
+        }
+        .ent {
+            font-weight:bold;
+            font-size: 50px;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            border-radius: 10px;
+            border-color: aqua;
+            background-color: green;
+            padding:10px;
+        }
+        input.inp{
+            font-size: 30px;
+            border-radius: 10px;
+            margin-left: 100px;
+            border-color: rgb(0, 0, 0);
+        }
+        .fs{
+            border-radius: 10px;
+            border-width: 10px;
+            border-color:rgb(143, 255, 137)
+        }
+        .leg{
+            font-size: 50px;
+            font-weight:bold;
+            color : rgb(7, 255, 152);
+        }
+        .error{
+            background-color: red;
+            font-size : 100px;
+        }
+
+        
+    </style>
+</head>
+<body>
+    <form method="post">
+        {% csrf_token %}
+        {%if error%}
+            <span class="error">
+                {{error}}
+            </span>
+        {%endif%}
+        <fieldset class="fs" style="margin-left: auto;">
+            <legend class="leg"> LOGIN </legend>
+            <label for="username" value = {{username}}> Username: </label><br>
+            <input class="inp" type="text" id="username" name="username" ><br>
+            <label for="password" name="password" >Password:</label><br>
+            <input class="inp" type="password" id="password" name="password"> <br><br>
+            <input class="ent" type="submit" id="submit" value="Login">
+        
+    </form>
+</body>
+</html>
