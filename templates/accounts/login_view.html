@@ -5,6 +5,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login page</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        {%if error%}
+            $(document).ready(()=> {
+            $(".ent").click(()=> {
+                alert("Username or password is incorrect !!")
+            })
+        })
+        {%endif%}
+    </script>
     <style>
         label{
             color : rgb(0, 0, 0);
@@ -48,11 +58,7 @@
 <body>
     <form method="post">
         {% csrf_token %}
-        {%if error%}
-            <span class="error">
-                {{error}}
-            </span>
-        {%endif%}
+      
         <fieldset class="fs" style="margin-left: auto;">
             <legend class="leg"> LOGIN </legend>
             <label for="username" value = {{username}}> Username: </label><br>
