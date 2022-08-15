@@ -18,3 +18,5 @@ def cinema_list(request):
         'cinemas' : cinemas
     }
     return render(request, 'ticketing/cinema_list_view.html', context)
+
+    

@@ -8,7 +8,7 @@ class Movie(models.Model):
     year = models.IntegerField('Release Date')
     description = models.TextField('Story')
     length = models.IntegerField('Duration')
-    
+    image = models.ImageField('Poster', upload_to = 'media', blank = True, null = True)
     MOVIES_RATES = [
         ('G', 'General Audience'),
 	    ('PG', 'Parental Guidance'),
@@ -65,4 +65,4 @@ status = models.IntegerField(choices='status_choices')
 
 
 def __str__(self):
-    return '{} - {} - {} '.format(self.movie, self.cinema, self.start_time)
+    return f'{self.movie} - {self.cinema} - {self.start_time} '
