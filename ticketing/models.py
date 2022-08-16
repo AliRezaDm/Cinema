@@ -8,7 +8,7 @@ class Movie(models.Model):
     year = models.IntegerField('Release Date')
     description = models.TextField('Story')
     length = models.IntegerField('Duration')
-    image = models.ImageField('Poster', upload_to = 'media', blank = True, null = True)
+    image = models.ImageField('Poster', upload_to = 'movie_posters/', blank = True, null = True)
     MOVIES_RATES = [
         ('G', 'General Audience'),
 	    ('PG', 'Parental Guidance'),
